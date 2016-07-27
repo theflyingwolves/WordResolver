@@ -27,10 +27,10 @@ def main():
 	for word in allwords:
 		print word + ": "
 		deftn = check_word(word)
-		defStr = definition_to_str(defth)
+		defstr = definition_to_str(deftn)
 		allDeftns.append(defstr)
-		print defStr
-	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 10)
+		print defstr
+	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 10, allDeftns)
 
 
 if __name__ == '__main__':
