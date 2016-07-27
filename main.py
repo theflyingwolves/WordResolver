@@ -14,12 +14,24 @@ def check_word(word):
 	os.remove(xmlFileName)
 	return definitions
 
+def definition_to_str(deftns):
+	result = "";
+	for deftn in deftns:
+		result += deftn
+		result += "\n"
+	return result
+
 def main():
-	allwords = excel_parser.read_words_from_file("sheet.xlsm", "L1", "B2:B10")
+	allwords = excel_parser.read_words_from_file("sheet.xlsm", "L1", 2,10)
+	allDeftns = []
 	for word in allwords:
 		print word + ": "
-		print check_word(word)
-		print "\n"
+		deftn = check_word(word)
+		defStr = definition_to_str(defth)
+		allDeftns.append(defstr)
+		print defStr
+	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 10)
+
 
 if __name__ == '__main__':
     main()
