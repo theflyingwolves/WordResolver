@@ -7,8 +7,12 @@ def read_words_from_file(fileName, sheetName, startRow, endRow):
 
 	allwords = []
 	for word in ws.iter_rows("B"+str(startRow)+":B"+str(endRow)):
+		print word[0].value.strip()
 		try:
-			allwords.append(str(word[0].value))
+			allwords.append(word[0].value.strip())
 		except:
-			allwords.append("NaN")
+			try:
+				allwords.append(word[0].value.decode("utf-8").encode("ascii", "ignore"))
+			except:
+				allwords.append("NaN")
 	return allwords

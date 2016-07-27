@@ -26,8 +26,7 @@ def definition_to_str(deftns):
 	return result
 
 def main():
-	# print check_word("hypocrite")
-	allwords = excel_parser.read_words_from_file("sheet.xlsm", "L1", 2,385)
+	allwords = excel_parser.read_words_from_file("word3000.xlsx", "Sheet1", 1,5)
 	allDeftns = []
 	for word in allwords:
 		print word + ": "
@@ -35,7 +34,7 @@ def main():
 		defstr = definition_to_str(deftn)
 		allDeftns.append(defstr)
 		print defstr
-	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 385, allDeftns)
+	excel_writer.write_to_excel_column("word3000.xlsx", "Sheet1", 1, 5, allDeftns)
 
 
 if __name__ == '__main__':
