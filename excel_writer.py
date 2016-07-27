@@ -6,6 +6,6 @@ def write_to_excel_column(filename, sheetname, startRow, endRow, data):
 	ws = wb.get_sheet_by_name(sheetname)
 	currPos = startRow
 	for cellRow in ws.iter_rows("D"+str(startRow)+":D"+str(endRow)):
-		cellRow[0].value = data[currPos-startRow]
+		cellRow[0].value = str(data[currPos-startRow])
 		currPos+=1
-	wb.save(filename)
+	wb.save("sheet.xlsx")
