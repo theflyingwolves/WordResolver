@@ -7,5 +7,8 @@ def read_words_from_file(fileName, sheetName, startRow, endRow):
 
 	allwords = []
 	for word in ws.iter_rows("B"+str(startRow)+":B"+str(endRow)):
-		allwords.append(str(word[0].value))
+		try:
+			allwords.append(str(word[0].value))
+		except:
+			allwords.append("NaN")
 	return allwords

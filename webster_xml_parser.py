@@ -6,8 +6,9 @@ def parse(fileName):
 def parsedttag(node):
 	text = node.text
 	for child in node:
-		if child.text is not None:
-			text += child.text
+		if child.tag == "d_link" or child.tag == "i_link" or child.tag == "dx_ety" or child.tag == "dx_def":
+			if child.text is not None:
+				text += child.text
 	return text
 
 def get_definitions_from_file(fileName):

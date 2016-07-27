@@ -8,7 +8,11 @@ def check_word(word):
 	xmlFileName = "words/"+word+".xml"
 	xmlData = webster_api.get_word_definition(word)
 	with open(xmlFileName, "w+") as xmlFile:
-		xmlFile.write(xmlData)
+		try:
+			xmlstr = xmlData.decode("utf-8").encode("ascii", "ignore")
+		except:
+			xmlstr = ""
+		xmlFile.write(xmlstr)
 		xmlFile.close()
 	definitions = webster_xml_parser.get_definitions_from_file(xmlFileName)
 	os.remove(xmlFileName)
@@ -22,7 +26,8 @@ def definition_to_str(deftns):
 	return result
 
 def main():
-	allwords = excel_parser.read_words_from_file("sheet.xlsm", "L1", 2,10)
+	# print check_word("hypocrite")
+	allwords = excel_parser.read_words_from_file("sheet.xlsm", "L1", 2,385)
 	allDeftns = []
 	for word in allwords:
 		print word + ": "
@@ -30,7 +35,7 @@ def main():
 		defstr = definition_to_str(deftn)
 		allDeftns.append(defstr)
 		print defstr
-	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 10, allDeftns)
+	excel_writer.write_to_excel_column("sheet.xlsm", "L1", 2, 385, allDeftns)
 
 
 if __name__ == '__main__':
